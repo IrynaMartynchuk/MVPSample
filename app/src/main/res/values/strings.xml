@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">MVPSample</string>
+    <string name="content_description_img">Image</string>
+    <string name="heart_icon_description">Image of heart icon</string>
+    <string name="price_format">,-</string>
+    <string name="status_image_description">status image</string>
+    <string name="toggle_switch_text">Kun favoritter</string>
+    <string name="item_photo_description">Selected item image</string>
+</resources>

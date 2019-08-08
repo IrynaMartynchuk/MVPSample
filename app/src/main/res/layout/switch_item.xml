@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <Switch
+            android:id="@+id/action_switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/toggle_switch_text"
+            android:textSize="@dimen/switch_textSize"
+            android:textColor="@color/blackColor"
+            android:fontFamily="@font/finn_type_alle_tegn_bold"
+            android:gravity="start"
+            android:thumbTint="@color/lightGreyColor"
+            android:trackTint="@color/blackColor"
+            android:layout_centerVertical="true" />
+</RelativeLayout>

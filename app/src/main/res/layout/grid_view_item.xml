@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+            android:id="@+id/finn_image"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:adjustViewBounds="true"
+            android:layout_marginTop="@dimen/image_marginTop"
+            android:paddingEnd="@dimen/padding"
+            android:paddingStart="@dimen/padding"
+            tools:src="@tools:sample/backgrounds/scenic"
+            android:contentDescription="@string/content_description_img"/>
+
+    <ImageView
+            android:id="@+id/favorite_heart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:layout_alignParentTop="true"
+            android:layout_alignEnd="@id/finn_image"
+            android:layout_marginTop="@dimen/image_marginTop"
+            android:layout_marginEnd="@dimen/image_marginRight"
+            android:contentDescription="@string/heart_icon_description"/>
+
+    <TextView
+            android:id="@+id/price_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/textSize"
+            android:fontFamily="@font/finn_type_alle_tegn_medium"
+            android:textColor="@color/whiteColor"
+            android:background="@drawable/price_background"
+            android:layout_alignBottom="@id/finn_image"
+            android:layout_alignStart="@id/finn_image"
+            android:layout_marginStart="@dimen/price_marginLeft"
+            android:padding="@dimen/price_padding"/>
+
+    <TextView
+            android:id="@+id/location"
+            android:fontFamily="@font/finn_type_alle_tegn_regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/price_text"
+            android:paddingEnd="@dimen/padding"
+            android:paddingStart="@dimen/padding"
+            android:textSize="@dimen/loc_desc_textSize"
+            android:layout_marginTop="@dimen/loc_desc_marginTop"/>
+
+    <TextView
+            android:id="@+id/description"
+            android:fontFamily="@font/finn_type_alle_tegn_regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/location"
+            android:textSize="@dimen/loc_desc_textSize"
+            android:layout_marginTop="@dimen/loc_desc_marginTop"
+            android:paddingEnd="@dimen/padding"
+            android:paddingStart="@dimen/padding"
+            android:lines="1"
+            android:ellipsize="end"
+            android:textColor="@color/darkGrey"/>
+
+</RelativeLayout>

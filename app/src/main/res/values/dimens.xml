@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="image_marginTop">20dp</dimen>
+    <dimen name="padding">8dp</dimen>
+    <dimen name="image_marginRight">10dp</dimen>
+    <dimen name="textSize">20sp</dimen>
+    <dimen name="price_marginLeft">8dp</dimen>
+    <dimen name="price_padding">5dp</dimen>
+    <dimen name="loc_desc_textSize">16sp</dimen>
+    <dimen name="loc_desc_marginTop">2dp</dimen>
+    <dimen name="marginTop">8dp</dimen>
+    <dimen name="switch_textSize">25sp</dimen>
+    <dimen name="item_location_marginTop">16dp</dimen>
+    <dimen name="item_location_textSize">39sp</dimen>
+</resources>
