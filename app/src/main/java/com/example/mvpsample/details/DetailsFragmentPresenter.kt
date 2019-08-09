@@ -5,18 +5,19 @@ import com.example.mvpsample.model.database.FavoriteItem
 import com.example.mvpsample.model.database.FavoritesDatabase
 import com.example.mvpsample.model.networking.Item
 
-class DetailsFragmentPresenter(_view: DetailsFragmentContract.View) : DetailsFragmentContract.Presenter {
+class DetailsFragmentPresenter(var view: DetailsFragmentContract.View) :
+    DetailsFragmentContract.Presenter {
 
-    private var view: DetailsFragmentContract.View = _view
-    private val repository = FavoritesRepository(FavoritesDatabase.getInstance(view.getContext()).favoritesDatabaseDao)
+    private val repository =
+        FavoritesRepository(FavoritesDatabase.getInstance(view.getContext()).favoritesDatabaseDao)
 
     override fun clickOnHeart(item: Item?) {
-        val favoriteItem = FavoriteItem(item!!.id, item.image, item.location, item.price, item.description)
+        val favoriteItem =
+            FavoriteItem(item!!.id, item.image, item.location, item.price, item.description)
         if (item.isFavorite) {
             item.isFavorite = false
             repository.delete(favoriteItem).subscribe()
-        } else
-        {
+        } else {
             repository.insert(favoriteItem).subscribe()
             item.isFavorite = true
         }

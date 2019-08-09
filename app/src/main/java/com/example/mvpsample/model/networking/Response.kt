@@ -15,7 +15,7 @@ data class Item(
     val location: String?,
     val price: @RawValue Price?,
     val id: String,
-    var isFavorite: Boolean = false): Parcelable {}
+    var isFavorite: Boolean = false): Parcelable
 
 data class Image(
     val url: String? = null

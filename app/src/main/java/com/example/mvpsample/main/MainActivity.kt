@@ -18,11 +18,16 @@ class MainActivity : AppCompatActivity(), MainActivityContract.View {
 
     }
 
-    override fun setFragment(fragment: BaseFragment) {
+    override fun setFragment(fragment: BaseFragment, previousFragment: BaseFragment?) {
         fragment.attachPresenter(presenter)
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.fragment_container, fragment)
+            .apply {
+                previousFragment?.let {
+                    addToBackStack(it.toString())
+                }
+            }
             .commit()
     }
 }

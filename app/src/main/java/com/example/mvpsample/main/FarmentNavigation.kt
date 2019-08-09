@@ -6,7 +6,7 @@ interface FragmentNavigation {
     }
 
     interface Presenter {
-        fun addFragment (fragment: BaseFragment)
+        fun addFragment (fragment: BaseFragment, previousFragment: BaseFragment?)
     }
 }
 

@@ -11,8 +11,8 @@ class MainActivityPresenter(_view: MainActivityContract.View) : MainActivityCont
 
     }
 
-    override fun addFragment(fragment: BaseFragment) {
-        view.setFragment(fragment)
+    override fun addFragment(fragment: BaseFragment, previousFragment: BaseFragment?) {
+        view.setFragment(fragment, previousFragment)
     }
 
 }
