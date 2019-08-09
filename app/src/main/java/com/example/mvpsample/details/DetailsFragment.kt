@@ -16,8 +16,7 @@ import com.example.mvpsample.main.BaseFragment
 import com.example.mvpsample.R
 import com.example.mvpsample.main.MainActivity
 import com.example.mvpsample.model.networking.Item
-
-private const val BASE_IMG_URL = "https://images.finncdn.no/dynamic/480x360c/"
+import com.example.mvpsample.utils.BASE_IMG_URL
 
 class DetailsFragment: BaseFragment(),
     DetailsFragmentContract.View {
@@ -55,7 +54,7 @@ class DetailsFragment: BaseFragment(),
         }
         location.text = item?.location
         description.text = item?.description
-        price.text = String.format("%s,-", item?.price?.value.toString())
+        price.text = "${item?.price?.value ?: 0},-"
 
         //to show back button in a toolbar menu
         showBackArrow()

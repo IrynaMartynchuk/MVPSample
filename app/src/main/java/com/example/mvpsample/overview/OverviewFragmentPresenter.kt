@@ -13,12 +13,14 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class OverviewFragmentPresenter(_view: OverviewFragmentContract.View) : OverviewFragmentContract.Presenter {
+class OverviewFragmentPresenter(val view: OverviewFragmentContract.View) :
+    OverviewFragmentContract.Presenter {
 
-    @Inject lateinit var api: ApiService
-    private var view: OverviewFragmentContract.View = _view
+    @Inject
+    lateinit var api: ApiService
     private var items: List<Item>? = arrayListOf()
-    private var repository = FavoritesRepository(FavoritesDatabase.getInstance(view.getContext()).favoritesDatabaseDao)
+    private var repository =
+        FavoritesRepository(FavoritesDatabase.getInstance(view.getContext()).favoritesDatabaseDao)
     private var disposable: Disposable? = null
     private var listOfFavorites: List<Item> = ArrayList()
 
@@ -33,20 +35,22 @@ class OverviewFragmentPresenter(_view: OverviewFragmentContract.View) : Overview
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
             .subscribe(
-                {favorites ->
-                    listOfFavorites = favorites.map { Item(
-                        id = it.id,
-                        image = it.url,
-                        location = it.location,
-                        price = it.price,
-                        description = it.description,
-                        isFavorite = true)
+                { favorites ->
+                    listOfFavorites = favorites.map {
+                        Item(
+                            id = it.id,
+                            image = it.url,
+                            location = it.location,
+                            price = it.price,
+                            description = it.description,
+                            isFavorite = true
+                        )
                     }
                     if (view.getToggleStatus()) {
                         view.onGetSuccessResult(listOfFavorites)
                     }
                 },
-                { error -> Log.e("Error", error.message!!)})
+                { error -> Log.e("Error", error.message!!) })
     }
 
     override fun showFavorites() {
@@ -63,14 +67,13 @@ class OverviewFragmentPresenter(_view: OverviewFragmentContract.View) : Overview
     }
 
     override fun clickOnHeart(item: Item) {
-
-        val newFavorite = FavoriteItem(item.id, item.image, item.location, item.price, item.description)
+        val newFavorite =
+            FavoriteItem(item.id, item.image, item.location, item.price, item.description)
         if (item.isFavorite) {
             item.isFavorite = false
             repository.delete(newFavorite).subscribe()
 
-        } else
-        {
+        } else {
             item.isFavorite = true
             repository.insert(newFavorite).subscribe()
         }
@@ -93,7 +96,7 @@ class OverviewFragmentPresenter(_view: OverviewFragmentContract.View) : Overview
         return api.getData()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
-            .subscribe ({  response ->
+            .subscribe({ response ->
                 items = response.items
                 markFavorites()
                 view.onGetSuccessResult(items)

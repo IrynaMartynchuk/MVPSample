@@ -34,30 +34,27 @@ class OverviewFragment : BaseFragment(),
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //to change amount of columns in a grid according to orientation
-        val columns: Int
-        if (activity?.resources?.configuration?.orientation == Configuration.ORIENTATION_PORTRAIT) {
-            columns = 2
-        } else columns = 3
+        val columns =
+            if (activity?.resources?.configuration?.orientation == Configuration.ORIENTATION_PORTRAIT) {
+                2
+            } else {
+                3
+            }
         val layoutManager = GridLayoutManager(this.context, columns)
         photos_grid.layoutManager = layoutManager
 
-        listAdapter = ItemListAdaptor(this.context, ItemListAdaptor.OnHeartIconClickListener { item, view ->
-            if (view.id == photos_grid.finn_image.id){
+        listAdapter = ItemListAdaptor(
+            context = this.context,
+            onHeartClicked = presenter::clickOnHeart,
+            onItemClicked = { item ->
                 val detailsFragment = DetailsFragment()
                 val args = Bundle()
                 args.putParcelable("item", item)
                 detailsFragment.arguments = args
 
-                activity?.supportFragmentManager
-                    ?.beginTransaction()
-                    ?.replace(R.id.fragment_container, detailsFragment)
-                    ?.addToBackStack(OverviewFragment().toString())
-                    ?.commit()
-
-            } else if (view.id == photos_grid.favorite_heart.id) {
-                presenter.clickOnHeart(item)
+                navigationPresenter.addFragment(detailsFragment, this)
             }
-        })
+        )
         photos_grid.adapter = listAdapter
 
         //to disable back button in a toolbar
@@ -73,12 +70,11 @@ class OverviewFragment : BaseFragment(),
         itemSwitch.setActionView(R.layout.switch_item)
         val mySwitch: Switch = itemSwitch.actionView.findViewById(R.id.action_switch)
         mySwitch.isChecked = isToggled
-        mySwitch.setOnCheckedChangeListener{ _, isChecked ->
-            if (isChecked){
+        mySwitch.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
                 presenter.showFavorites()
                 isToggled = true
-            }
-            else {
+            } else {
                 presenter.hideFavorites()
                 isToggled = false
             }
